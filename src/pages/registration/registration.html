@@ -15,4 +15,16 @@
 
 <ion-content padding>
 
+<form (submit)="register()">
+  <input name="username" [(ngModel)]="mediaService.username" placeholder="Username"/>
+  <br>
+  <input name="password" [(ngModel)]="mediaService.password" placeholder="Password"/>
+  <br>
+  <input name="email" [(ngModel)]="mediaService.email" placeholder="Email">
+  <br>
+  <input [(ngModel)]="mediaService.full_name" placeholder="FullName" name="full_name">
+  <br>
+  <button type="submit" (click)="mediaService.login()">Register</button>
+</form>
+
 </ion-content>

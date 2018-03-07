@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar >
     <ion-title>login</ion-title>
   </ion-navbar>
 
@@ -14,5 +14,16 @@
 
 
 <ion-content padding>
+
+
+<div class="container">
+  <h1>Log in</h1>
+  <label><b>Username</b></label><br>
+  <input [(ngModel)]="mediaProvider.username"><br>
+  <label><b>Password</b></label><br>
+  <input [(ngModel)]="mediaProvider.password" type="password"><br>
+  <button (click)="mediaProvider.login()">Login</button>
+</div>
+{{mediaProvider.status}}
 
 </ion-content>

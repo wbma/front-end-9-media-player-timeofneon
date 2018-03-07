@@ -12,7 +12,18 @@
 
 </ion-header>
 
-
 <ion-content padding>
+
+<form>
+  <input type="file" name="file" (change)="setFile($event)">
+
+  <p>Title</p>
+  <input type="text" name="title">
+
+  <p>Description</p>
+  <textarea name="description"></textarea>
+
+  <button type="submit" (click)="startUpload()">Upload</button>
+</form>
 
 </ion-content>

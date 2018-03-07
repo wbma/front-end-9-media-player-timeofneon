@@ -6,13 +6,24 @@
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
+<ion-content>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <div  *ngFor="let image of mediaFiles">
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+    <ion-grid col-4="">
+    <ion-card>
+      <ion-card-title>
+      {{ image.title }}
+        </ion-card-title>
+      <ion-card-content>
+    <img class="container" [alt]="image.title"
+         [src]="'http://media.mw.metropolia.fi/wbma/uploads/' + (image.filename | thumbnail: 'small')">
+    <p><i>
+      {{ image.description }}
+    </i></p>
+        </ion-card-content>
+      </ion-card>
+    </ion-grid>
+  </div>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
-</ion-content>
+  </ion-content>
