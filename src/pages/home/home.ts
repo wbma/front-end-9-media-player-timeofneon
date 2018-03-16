@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { NavController} from 'ionic-angular';
+import {NavController} from 'ionic-angular';
 import {MediaProvider} from "../../providers/media/media";
+import {LogoutPage} from "../logout/logout";
 
 @Component({
   selector: 'page-home',
@@ -11,7 +12,6 @@ export class HomePage implements OnInit{
 
   @ViewChild('myNav') nav: NavController;
 
-  printOut: string;
   mediaFiles: any;
 
   ngOnInit(): void {
@@ -26,8 +26,6 @@ export class HomePage implements OnInit{
       this.router.navigate(['login']);
     } */
 
-    this.printOut = this.mediaProvider.test;
-
     this.mediaProvider.getMediaFiles(0, 10).subscribe(result => {
       this.mediaFiles = result;
     }, err => {
@@ -36,6 +34,10 @@ export class HomePage implements OnInit{
   }
 
   constructor(public navCtrl: NavController, public mediaProvider: MediaProvider) {
+  }
+
+  logout() {
+    this.navCtrl.setRoot(LogoutPage)
   }
 
 }

@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {MediaProvider} from "../../providers/media/media";
 import {HttpErrorResponse} from "@angular/common/http";
 import {HomePage} from "../home/home";
+import {User} from "../../interfaces/user";
 
 /**
  * Generated class for the LoginPage page.
@@ -16,20 +17,28 @@ import {HomePage} from "../home/home";
   selector: 'page-login',
   templateUrl: 'login.html',
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
 
-  ngOnInit(): void {
-    if (localStorage.getItem('token') !== null) {
-      this.mediaProvider.getUserData().subscribe(response => {
-        console.log('Welcome ' + response['full_name']);
-      }, (error: HttpErrorResponse) => {
-        console.log(error);
-        this.navCtrl.push(HomePage, null);
-      });
-    }
-  }
+  user: User = {
+    password: '',
+    username: '',
+    email: ''
+  };
+
+  status: string;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public mediaProvider: MediaProvider) {
   }
-}
 
+  login() {
+    this.mediaProvider.login(this.user).subscribe(response => {
+      localStorage.setItem('token', response['token']);
+      this.navCtrl.setRoot(HomePage);
+      this.mediaProvider.logged = true;
+    }, (error: HttpErrorResponse) => {
+      console.log(error.error);
+      this.status = error.error.message;
+    });
+  }
+}

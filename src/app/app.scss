@@ -15,3 +15,35 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+.toolbar-background {
+  background-color: #488aff;
+}
+
+.toolbar-title {
+  width: 8em;
+  padding-top: 0.5%;
+}
+
+.card {
+  border-radius: 20px;
+  border: 3px solid black;
+}
+
+.formPar {
+  border-radius: 20px;
+  border: 3px solid black;
+  align-content: center;
+}
+
+.button {
+  background: transparent;
+  border-radius: 20px;
+  border: 3px solid black;
+  color: black;
+  float: right;
+}
+
+.welcome {
+  justify-content: center;
+  text-align: center;
+}

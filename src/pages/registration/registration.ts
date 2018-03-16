@@ -1,8 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import {IonicPage, NavController} from 'ionic-angular';
 import {User} from "../../interfaces/user";
 import {MediaProvider} from "../../providers/media/media";
 import {HttpErrorResponse} from "@angular/common/http";
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the RegistrationPage page.
@@ -23,22 +24,23 @@ export class RegistrationPage implements OnInit{
     password: '',
     email: ''
   };
+
   ngOnInit(): void {
     console.log('ionViewDidLoad RegistrationPage');
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider) {
+  constructor(public navCtrl: NavController, private mediaProvider: MediaProvider) {
   }
 
   register() {
-    console.log(this.user);
     this.mediaProvider.register(this.user).subscribe(response => {
-      console.log(response);
-      this.mediaProvider.username = this.user.username;
-      this.mediaProvider.password = this.user.password;
-      this.mediaProvider.login();
+      console.log('registered');
+      this.mediaProvider.login(this.user).subscribe(data => {
+        this.navCtrl.setRoot(HomePage);
+        this.mediaProvider.logged = true;
+      });
     }, (error: HttpErrorResponse) => {
-      console.log(error.error.message);
+      alert(error.error.message);
     });
   }
 }

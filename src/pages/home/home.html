@@ -1,28 +1,39 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
+    <ion-row>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Home</ion-title>
+      <div *ngIf="mediaProvider.logged">
+        <button ion-button (click)="logout()" icon-only>
+          <ion-icon name="close-circle"></ion-icon>
+        </button>
+      </div>
+    </ion-row>
   </ion-navbar>
 </ion-header>
 <ion-content>
 
   <div  *ngFor="let image of mediaFiles">
 
-    <ion-grid col-4="">
-    <ion-card>
-      <ion-card-title>
-      {{ image.title }}
-        </ion-card-title>
-      <ion-card-content>
-    <img class="container" [alt]="image.title"
-         [src]="'http://media.mw.metropolia.fi/wbma/uploads/' + (image.filename | thumbnail: 'small')">
-    <p><i>
-      {{ image.description }}
-    </i></p>
-        </ion-card-content>
-      </ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 col-sm-6 offset-sm-3>
+          <ion-card>
+            <ion-card-title>
+              {{ image.title }}
+            </ion-card-title>
+            <ion-card-content>
+              <img class="container" [alt]="image.title"
+                   [src]="'http://media.mw.metropolia.fi/wbma/uploads/' + (image.filename | thumbnail: 'small')">
+              <p><i>
+                {{ image.description }}
+              </i></p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </div>
 

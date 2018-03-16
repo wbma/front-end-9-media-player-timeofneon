@@ -1,29 +1,35 @@
-<!--
-  Generated template for the LoginPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar >
-    <ion-title>login</ion-title>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Log in</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-sm-6 offset-sm-3 padding>
+        <form class="formPar" (submit)="login()">
+          <ion-title class="welcome"><p><i>Welcome again!</i></p></ion-title>
+          <ion-list padding>
+            <ion-item>
+              <ion-input type="text" [(ngModel)]="user.username" name="Username"
+                         placeholder="username" required></ion-input>
+            </ion-item>
 
+            <ion-item>
+              <ion-input type="password" [(ngModel)]="user.password" name="Password"
+                         placeholder="password" required></ion-input>
+            </ion-item>
 
-<div class="container">
-  <h1>Log in</h1>
-  <label><b>Username</b></label><br>
-  <input [(ngModel)]="mediaProvider.username"><br>
-  <label><b>Password</b></label><br>
-  <input [(ngModel)]="mediaProvider.password" type="password"><br>
-  <button (click)="mediaProvider.login()">Login</button>
-</div>
-{{mediaProvider.status}}
-
+          </ion-list>
+          <div class="but">
+            <button type="submit" ion-button item-right padding block>Sign In</button>
+          </div>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -1,7 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {MediaProvider} from "../../providers/media/media";
-import {MediaInt} from "../../interfaces/mediaInt";
+import {HttpErrorResponse} from "@angular/common/http";
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the UploadPage page.
@@ -17,12 +18,9 @@ import {MediaInt} from "../../interfaces/mediaInt";
 })
 export class UploadPage implements OnInit{
 
-  fm: FormData = new FormData();
   file: File;
-  media: MediaInt = {
-    title: '',
-    description: '',
-  };
+  title: string;
+  description: string;
   ngOnInit(): void {
 
   }
@@ -36,11 +34,20 @@ export class UploadPage implements OnInit{
   }
 
   startUpload() {
-    this.fm.append('file', this.file);
-    this.fm.append('title', this.media.title);
-    this.fm.append('description', this.media.description);
-    this.mediaProvider.uploadFormData(this.fm).subscribe(response => {
+
+    const formData = new FormData();
+
+    formData.append('title', this.title);
+    formData.append('description', this.description);
+    formData.append('file', this.file);
+
+    console.log(formData);
+
+    this.mediaProvider.upload(formData, localStorage.getItem('token')).subscribe(response => {
       console.log(response);
+      this.navCtrl.setRoot(HomePage);
+    }, (error: HttpErrorResponse) => {
+      console.log(error.error.errorMessage);
     });
   }
 
