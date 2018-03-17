@@ -1,5 +1,3 @@
-class: center, middle
-
 # WBMA
 
 ## Media Player
