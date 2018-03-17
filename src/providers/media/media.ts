@@ -43,24 +43,19 @@ export class MediaProvider {
     return this.http.post(this.apiUrl + '/media', formData, settings);
   }
 
-  public getUserData() {
+  getUser(id, token) {
     const settings = {
-      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token'))
+      headers: new HttpHeaders().set('x-access-token', token),
     };
-    console.log('we try to upload now');
-    return this.http.get(this.apiUrl + '/users/user', settings);
-  }
-
-  getNewFiles() {
-    const settings = {
-      headers: new HttpHeaders().set('x-access-token',
-        localStorage.getItem('token')),
-    };
-    return this.http.get(this.apiUrl + '/media', settings);
+    return this.http.get(this.apiUrl + '/users/' + id, settings);
   }
 
   getMediaFiles(start: number, amount: number) {
     return this.http.get(this.apiUrl + '/media?start=' + start + '&limit=' + amount);
+  }
+
+  getAmountOfFavourites(id: string) {
+    return this.http.get<Array<string>>(this.apiUrl + '/favourites/file/' + id);
   }
 
 }

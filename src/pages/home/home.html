@@ -16,7 +16,6 @@
 <ion-content>
 
   <div  *ngFor="let image of mediaFiles">
-
     <ion-grid>
       <ion-row>
         <ion-col col-12 col-sm-6 offset-sm-3>
@@ -27,9 +26,10 @@
             <ion-card-content>
               <img class="container" [alt]="image.title"
                    [src]="'http://media.mw.metropolia.fi/wbma/uploads/' + (image.filename | thumbnail: 'small')">
-              <p><i>
-                {{ image.description }}
-              </i></p>
+              <button ion-button
+                      (click)="toPlayer(image.title, image.description, image.filename, image.user_id, image.file_id)">
+                Details
+              </button>
             </ion-card-content>
           </ion-card>
         </ion-col>

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Media Player</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-sm-6 offset-sm-3>
+        <ion-card>
+          <ion-card-title>
+            {{ title }}
+          </ion-card-title>
+          <ion-card-content>
+            <img class="container" [alt]="title"
+                 [src]="'http://media.mw.metropolia.fi/wbma/uploads/' + (image)">
+            <br><b>Description: </b>{{description}}
+            <br><b>Username: </b>{{username}}
+            <br><b>Fullname: </b>{{fullname}}
+            <br><b>UserId: </b>{{user}}
+            <br><b>Favourites: </b>{{favourites}}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

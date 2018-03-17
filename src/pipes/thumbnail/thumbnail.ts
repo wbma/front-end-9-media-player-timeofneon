@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 /**
  * Generated class for the ThumbnailPipe pipe.
@@ -10,16 +10,21 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ThumbnailPipe implements PipeTransform {
 
-  transform(filename: string, args?: string): string {
-    const image = {
-      large: '-tn640.png',
-      medium: '-tn320.png',
-      small: '-tn160.png',
-      screenshot: '-tn400.png'
-    };
-    if (args) {
-      return filename.split('.')[0] + image[args];
+  transform(value: string, ...args) {
+    let size: string;
+    const temp = value.split('.');
+    switch (args[0]) {
+      case 'small':
+        size = '160';
+        break;
+      case 'medium':
+        size = '320';
+        break;
+      case 'large':
+        size = '640';
+        break;
     }
-    return filename.split('.')[0] + image.small;
+    return temp[0] + '-tn' + size + '.png';
+
   }
 }

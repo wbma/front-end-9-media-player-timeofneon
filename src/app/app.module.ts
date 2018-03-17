@@ -14,6 +14,7 @@ import {MediaProvider} from '../providers/media/media';
 import {PipesModule} from "../pipes/pipes.module";
 import {HttpClientModule} from "@angular/common/http";
 import {LogoutPage} from "../pages/logout/logout";
+import {MediaPlayerPage} from "../pages/media-player/media-player";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {LogoutPage} from "../pages/logout/logout";
     LoginPage,
     RegistrationPage,
     UploadPage,
-    LogoutPage
+    LogoutPage,
+    MediaPlayerPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import {LogoutPage} from "../pages/logout/logout";
     LoginPage,
     RegistrationPage,
     UploadPage,
-    LogoutPage
+    LogoutPage,
+    MediaPlayerPage
   ],
   providers: [
     StatusBar,
